@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-<div class="flex flex-row ml-64 mt-24">
-    <div class="carts flex flex-row gap-5 ml-0">
+<div class="ml-60 mt-24">
+    <div class="carts flex flex-row gap-5 m-auto">
             @if($contents->count() > 0)
                 @foreach ( $contents as $content )
                 <div class=" w-80 mt-2 bg-white border border-gray-200 product ronded-md    ">
@@ -37,9 +37,9 @@
                 </div>
                 @endforeach
                 @else
-                <div class="w-full ml-64 m-auto">
-                    <img src="{{asset('images/welcome/star.png')}}" class="h-80" alt="" srcset="">
-                    <p class="mt-7">No Starred Items here..</p>
+                <div class="w-full ml-80 m-auto">
+                    <img src="{{asset('images/welcome/starred.svg')}}" class="h-80" alt="" srcset="">
+                    <p class="mt-7 ml-24">No Starred Items here..</p>
                 </div>
                 @endif
     </div>

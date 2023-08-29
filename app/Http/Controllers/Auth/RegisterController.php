@@ -20,23 +20,23 @@ class RegisterController extends Controller
           $request->validate([
             'username'=>'required',
             'email'=>'required|email',
-            'password'=>'required',
-            'password_confirmation'=> 'required|same:password'
+            'password'=>'required|min:8',
+            'password_confirmation'=> 'required|same:password|min:8'
           ] );
 
-          $token = Str::random(64);
+          $token_vaild = Str::random(64);
 
 
             $user = new User;
             $user->name = $request->input('username');
             $user->email = $request->input('email');
-            $user->remember_token = $token;
+            $user->remember_token = $token_vaild;
             $user->password = Hash::make($request->input('password'));
-            $user->password_confirmation = Hash::make($request->input('password_confirmation'));
+            // $user->password_confirmation = Hash::make($request->input('password_confirmation'));
 
             $user->save();
 
-            Mail::send('auth.email.register',['token'=>$token],function($message) use($request){
+            Mail::send('auth.email.register',['token_vaild'=>$token_vaild],function($message) use($request){
                 $message->to($request->input('email'));
                 $message->subject('Welcome to the Journals');
              });

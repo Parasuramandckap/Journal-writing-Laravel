@@ -18,7 +18,7 @@
           <!-- Modal content -->
           <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <!-- Modal header -->
-              <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600 bg-red-700">
+              <div class="flex items-start justify-between p-4 border-b rounded-t  bg-emerald-700">
                 <p class="text-lg leading-relaxed text-white	 dark:text-gray-400">
                     Verify Your Email Address
                 </p>
@@ -33,7 +33,12 @@
               <div class="p-6 space-y-6">
                   <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                     Before proceeding Our Journal, please check your email for a verification link.</p>
-                    <a href="https://mail.google.com/mail" class="no-underline hover:underline text-red-500	">Go to your Gmail</a>
+                    <a href="https://mail.google.com/mail" class="no-underline hover:underline text-gray-900 hover:text-emerald-600	">Go to your Gmail</a>
+              </div>
+                <div class="p-6 space-y-6">
+                  <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                    Before proceeding Our Journal, please check your email for a verification link.</p>
+                    <a href="https://mail.google.com/mail" class="no-underline hover:underline text-gray-900 hover:text-emerald-600	">Go to your Gmail</a>
               </div>
 
           </div>

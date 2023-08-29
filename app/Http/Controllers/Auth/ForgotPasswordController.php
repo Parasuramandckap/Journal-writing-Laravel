@@ -39,9 +39,11 @@ class ForgotPasswordController extends Controller
         return back()->with('message','we have emailed you reset password link!');
     }
 
+
     public function showResetPasswordForm($token){
         return view('auth.forgotPasswordLink',['token'=>$token]);
     }
+
 
 
     public function submitResetPasswordForm(request $request){
@@ -55,7 +57,7 @@ class ForgotPasswordController extends Controller
         ->where('email',$request->input('email'))
         ->where('token',$request->token)
         ->first();
-
+        // dd($request);
         if(!$password_reset_request){
           return back()->with('error','Invaild Token !');
         }
@@ -67,7 +69,10 @@ class ForgotPasswordController extends Controller
             DB::table('password_resets')
             ->where('email',$request->input('email'))
             ->delete();
-
+            Mail::send('auth.passwordChanged',['password'=>'password'],function($message) use($request){
+                $message->to($request->input('email'));
+                $message->subject('DCKAP Journals');
+             });
         return redirect('/login')->with('message','Your Password has be changed!');
         }
      }

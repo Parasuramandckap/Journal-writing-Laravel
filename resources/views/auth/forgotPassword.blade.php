@@ -1,83 +1,147 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Contact Form Template</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="font-sans bg-gray-400">
-		<!-- Container -->
-		<div class="container mx-auto">
-			<div class="flex justify-center items-center h-screen px-6">
-				<!-- Row -->
-				<div class="w-full xl:w-3/4 lg:w-11/12 flex">
-					<!-- Col -->
-					<div
-						class="w-full h-auto bg-white hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
-					><img src="{{asset('images/welcome/Forgot_password-bro.png')}}">
-                </div>
-					<!-- Col -->
-                    @if (Session::has('message'))
-                    <div class="alert alert-success" role="alert">
-                       {{ Session::get('message') }}
-                   </div>
-                   @endif
-					<div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
-						<div class="px-8 mb-4 text-center">
-							<h3 class="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
-							<p class="mb-4 text-l text-gray-700">
-								We get it, stuff happens. Just enter your email address below and we'll send you a
-								link to reset your password!
-							</p>
-						</div>
-                        <form action="{{ route('forgot.password.post') }}" method="POST" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="email">
-									Email
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="email"
-									type="email"
-									placeholder="Enter Email Address..."
-								/>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Contact Form Template</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* .alert.alert-success {
+            position: absolute;
+            top: 70%;
+            left: 18%;
+            color: emarald-600;
+        } */
+
+        .text-danger {
+            color: red
+        }
+        .loader-line {
+            width: 100%;
+            height: 3px;
+            position: absolute;
+            overflow: hidden;
+            background-color: #ddd;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+        }
+
+        .loader-line:before {
+            content: "";
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background-color: green;
+            -webkit-animation: lineAnim 1s linear infinite;
+            -moz-animation: lineAnim 1s linear infinite;
+            animation: lineAnim 1s linear infinite;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+        }
+
+        @keyframes lineAnim {
+            0% {
+                left: -100%;
+            }
+            25% {
+                left: 20%;
+                width: 30%;
+            }
+            50% {
+                left: 40%;
+                width: 60%;
+            }
+            75% {
+                left: 75%;
+                width: 80%;
+            }
+            100% {
+                left: 100%;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-gray-400">
+    <!-- Container -->
+
+    {{-- <div class="container mx-auto"> --}}
+        <!-- Col -->
+        @if (Session::has('message'))
+            <div class="absolute  alert alert-success text-emerald-800" role="alert">
+                {{ Session::get('message') }}
+            </div>
+        @endif
+        <div class="div ">
+            <div class="loader-line"></div>
+
+            <div class="flex justify-center items-center h-screen px-6">
+                <!-- Row -->
+
+                <div class="w-full xl:w-3/4 lg:w-11/12 flex">
+
+                    <!-- Col -->
+                    <div class="w-full h-auto bg-white hidden lg:block lg:w-1/2 bg-cover rounded-l-lg">
+                        <img
+                            src="{{ asset('images/welcome/Forgot_password-bro.png') }}">
+                    </div>
+
+                    <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
+                        <div class="px-8 mb-4 text-center">
+                            <h3 class="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
+                            <p class="mb-4 text-l text-gray-700">
+                                We get it, stuff happens. Just enter your email address below and we'll send you a
+                                link to reset your password!
+                            </p>
+                        </div>
+                        <form action="{{ route('forgot.password.post') }}" method="POST"
+                            class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                            @csrf
+                            <div class="mb-4">
+                                <label class="block mb-2 text-sm font-bold text-gray-700" for="email">
+                                    Email
+                                </label>
+                                <input
+                                    class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                    id="email" type="email" placeholder="Enter Email Address..." name="email" />
                                 @if ($errors->has('email'))
-                                <span class="text-danger">{{ $errors->first('email') }}</span>
-                               @endif
-							</div>
-							<div class="mb-6 text-center">
-								<button
-									class="w-full px-4 py-2 font-bold text-white bg-emerald-600  rounded-full hover:bg-emerald-800 focus:outline-none focus:shadow-outline"
-									type="submit"
-								>
-									Reset Password
-								</button>
-							</div>
-							<hr class="mb-6 border-t" />
-							<div class="text-center">
-								<a
-									class="inline-block text-sm text-emerald-800 align-baseline hover:text-emerald-600"
-									href="/register"
-								>
-									Create an Account!
-								</a>
-							</div>
-							<div class="text-center">
-								<a
-									class="inline-block text-sm text-emerald-800 align-baseline hover:text-emerald-600"
-									href="/login"
-								>
-									Already have an account? Login!
-								</a>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
+                            </div>
+                            <div class="mb-6 text-center">
+                                <button
+                                    class="w-full px-4 py-2 font-bold text-white bg-emerald-600  rounded-full hover:bg-emerald-800 focus:outline-none focus:shadow-outline"
+                                    type="submit">
+                                    Reset Password
+                                </button>
+                            </div>
+                            <hr class="mb-6 border-t" />
+                            <div class="text-center">
+                                <a class="inline-block text-sm text-emerald-800 align-baseline hover:text-emerald-600"
+                                    href="/register">
+                                    Create an Account!
+                                </a>
+                            </div>
+                            <div class="text-center">
+                                <a class="inline-block text-sm text-emerald-800 align-baseline hover:text-emerald-600"
+                                    href="/login">
+                                    Already have an account? <span class="text-gray-900 hover:text-gray-600">Login!</span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    {{-- </div> --}}
+</body>
+
 </html>
 {{-- <style>
 :root {
@@ -199,4 +263,3 @@ body#LoginForm{ background-color:var(--clr-seconday-color) ; background-repeat:n
 
 </body>
 </html> --}}
-

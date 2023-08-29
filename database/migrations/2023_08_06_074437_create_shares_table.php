@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('content_id');
             $table->unsignedBigInteger('share_id');
+            $table->string('access');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('content_id')->references('id')->on('posts')->onDelete('cascade');

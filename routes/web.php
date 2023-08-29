@@ -95,11 +95,12 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('/showContent',[FrontendController::class,'showContent']);
 
+    Route::get('/list',[FrontendController::class,'list']);
 
 
+    Route::put('/password-update',[UserController::class,'passwordUpdate']);
 
 });
-
 
 
 
@@ -113,5 +114,6 @@ Route::get('reset-password/{token}',[ForgotPasswordController::class,"showResetP
 
 Route::get('email-verify/{token}',[RegisterController::class,"emailVerify"])->name('email.verify.get');
 
+Route::get('/guest-view/{id}',[FrontendController::class,'guestView'])->name('guest.view.get');
 
 Route::post('reset-password',[ForgotPasswordController::class,"submitResetPasswordForm"])->name('reset.password.post');

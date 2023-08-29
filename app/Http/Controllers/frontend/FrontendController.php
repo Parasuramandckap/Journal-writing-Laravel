@@ -17,6 +17,11 @@ class FrontendController extends Controller
     }
    }
 
+   public function Guestview($id){
+        $contents = Post::where('id',$id)->get();
+        return view('frontend.guestView',compact('contents'));
+   }
+
    public function delete(request $request)
    {
 

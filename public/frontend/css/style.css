@@ -104,7 +104,7 @@ button[title]:hover::after {
 }
 
 .profileImg{
-    background-image: url("https://e0.pxfuel.com/wallpapers/479/674/desktop-wallpaper-samantha-ruth-looking-very-cute-in-saree-mobile.jpg");
+    /* background-image: url("https://e0.pxfuel.com/wallpapers/479/674/desktop-wallpaper-samantha-ruth-looking-very-cute-in-saree-mobile.jpg"); */
     background-size: cover;
     background-position: top;
     border-radius: 50%;
@@ -286,13 +286,13 @@ button.editBtn.pt-1.pb-1.pl-2\.5.pr-2\.5.h-8.rounded-md {
     color: var(--secondary-color);
 }
 .profile{
-    background-image: url("https://e0.pxfuel.com/wallpapers/479/674/desktop-wallpaper-samantha-ruth-looking-very-cute-in-saree-mobile.jpg");
+    /* background-image: url("https://e0.pxfuel.com/wallpapers/479/674/desktop-wallpaper-samantha-ruth-looking-very-cute-in-saree-mobile.jpg"); */
     background-size: cover;
     background-position: top;
 }
 
 .head-profile-img{
-    background-image: url("https://e0.pxfuel.com/wallpapers/479/674/desktop-wallpaper-samantha-ruth-looking-very-cute-in-saree-mobile.jpg");
+    /* background-image: url("https://e0.pxfuel.com/wallpapers/479/674/desktop-wallpaper-samantha-ruth-looking-very-cute-in-saree-mobile.jpg"); */
     background-size: cover;
     background-position: center;
 }
@@ -427,7 +427,56 @@ button.updateBtn {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-.ql-editor > p
+/* .ql-editor > p
 {
     height: 230px;
+} */
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+    height: 230px;
 }
+.search-btn{
+    background-color: var(--font_bold-color);
+    color: var(--secondary-color);
+}
+
+.share-tab{
+    color: var(--font-color);
+}
+
+.noTrashItem{
+    margin-left: 520px;
+    margin-top: 125px;
+}
+
+.ql-editor.ql-blank {
+    background-color: white;
+}
+
+.ql-toolbar.ql-snow {
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    padding: 8px;
+    text-align: center;
+}
+
+/* .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    color: black;
+    background-color: white;
+    border-radius: 50%;
+    padding: 6px;
+} */

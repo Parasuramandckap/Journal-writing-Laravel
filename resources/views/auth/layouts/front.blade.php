@@ -26,24 +26,52 @@
 <script src="https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/flowbite.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+<style>
+    .flatpickr-day:hover {
+        background: #489f78;
+        color: white;
+    }
+
+    .flatpickr-day.today:hover {
+        background: #489f78;
+        color: white;
+    }
+
+    .flatpickr-day.today {
+        border: 1px solid #489f78;
+    }
+
+    .flatpickr-day.selected.startRange, .flatpickr-day.startRange.startRange, .flatpickr-day.endRange.startRange
+    {
+        background: #489f78;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #fff;
+        border-color: #489f78;
+    }
+    .flatpickr-day.selected.startRange, .flatpickr-day.startRange.startRange, .flatpickr-day.endRange.endRange
+    {
+        background: #489f78;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        color: #fff;
+        border-color: #489f78;
+    }
+    .url{
+        background-color: #489f78 !important;
+    }
+
+
+</style>
 </head>
 
 <body>
       @include('auth.layouts.inc.sidebar')
     <div class="main">
        @include('auth.layouts.inc.frontnav')
-        {{-- <main class="mt-16"> --}}
-            {{-- <div class="container text-center mx-auto p-4 justify-end">
-              <div class="flex justify-end rounded-lg text-lg" role="group">
-                <button
-                  class="bg-white text-grey-500 hover:bg-red-700 hover:text-white border border-r-0 border-blue-500 rounded-l-lg px-4 py-2 mx-0 outline-none focus:shadow-outline"><i class="fa-solid fa-calendar-days"></i></button>
-                <button
-                  class="bg-white text-grey-500 hover:bg-red-700 hover:text-white border border-blue-500  px-4 py-2 mx-0 outline-none focus:shadow-outline"><i class="fa-solid fa-bars"></i></button>
-                <button
-                  class="bg-white text-grey-500 hover:bg-red-700 hover:text-white border border-l-0 border-blue-500 rounded-r-lg px-4 py-2 mx-0 outline-none focus:shadow-outline"><i class="fa-solid fa-table-cells"></i></button>
-              </div>
-            </div> --}}
-      {{-- </main> --}}
       @yield('content')
     </div>
     <script src="{{ asset('frontend/js/jquery-3.7.0.min.js')}}"></script>
@@ -103,7 +131,16 @@
         </script>
     @endif
 
-
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        {{-- <!-- datatable js link -->
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+        <!-- tailwind css -->
+        <!-- <script src="https://cdn.tailwindcss.com/3.3.3"></script> -->
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="./pp.js"></script> --}}
+        {{-- <script type="module">
+            import hotwiredTurbo from 'https://cdn.skypack.dev/@hotwired/turbo';
+        </script>
+        <script src="https://cdn.jsdelivr.net/gh/livewire/turbolinks@v0.1.x/dist/livewire-turbolinks.js" data-turbolinks-eval="false" data-turbo-eval="false"></script> --}}
 </body>
-
 </html>

@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function authenticates(request $request){
         $request->validate([
             'email'=>'required',
-            'password'=>'required'
+            'password'=>'required|min:8'
         ]);
 
         $email = $request->input('email');

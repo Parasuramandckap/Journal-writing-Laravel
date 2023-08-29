@@ -19,10 +19,9 @@
         <div class="userDiv w-8/12 pl-4 pr-4 pt-6">
             <div class="user-header flex justify-between items-center">
                 <div class="user-image flex gap-6 items-center">
-                    <p class="user-img profile w-20	h-20 rounded-full">
-                        <a href="{{Auth::user()->avatar}}" target=”_blank” ><img src="{{Auth::user()->avatar}}" alt="" class="rounded-full"></a>
-                    </p>
-                    <label class="label-input-img"><input type="file" class="user-input-img"/><span class="bg-emerald-950 user-img-file"><i class="fa-solid fa-camera"></i></span></label>
+                    <a href="{{Auth::user()->avatar}}" target="_blank"><p class="user-img profile w-24	h-24 rounded-full pt-12 pl-12 bg-[url('{{Auth::user()->avatar}}')]">
+                        {{-- <a href="{{Auth::user()->avatar}}" target=”_blank” ><img src="{{Auth::user()->avatar}}" alt="" class="rounded-full"></a> --}}
+                    </p></a>
                     <p>{{Auth::user()->name}}</p>
                     {{-- <p>{{Auth::user()->bio}}</p> --}}
                 </div>
@@ -64,34 +63,46 @@
         <div id="default-modal" aria-hidden="true"
             class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
             <div class="relative w-3/5 h-2/3">
-                <form action="/userUpdate" method="post">
+                <form action="/userUpdate" method="post" enctype="multipart/form-data">
                     <div class="bg-white bg-emerald-600 rounded-lg shadow relative dark:bg-gray-700 pt-5 pb-5">
+                        <div class="flex justify-center">
+                            <a href="{{Auth::user()->avatar}}" target="_blank"><p class="user-img profile w-20	h-20 rounded-full pt-12 pl-12 bg-[url('{{Auth::user()->avatar}}')]" >
+                                {{-- <a href="{{Auth::user()->avatar}}" target=”_blank” ><img src="{{Auth::user()->avatar}}" alt="" class="rounded-full"></a> --}}
+                                <label class="label-input-img"><input type="file" class="user-input-img" name="image"/><span class="material-symbols-outlined text-white bg-black px-1 py-0 rounded-full text-xl bg-black">
+                                    add_photo_alternate
+                                </span></label>
+
+                                {{-- <span class="material-symbols-outlined text-white bg-black px-1 py-0 rounded-full text-xl bg-black">
+                                    add_photo_alternate
+                                </span> --}}
+                            </p></a>
+                        </div>
                         <div class="user-columns flex justify-evenly">
                             <div class="user-column1 flex flex-col gap-4">
                                     @csrf
                                     @method('PUT')
                                 <div class="name">
                                     <label class="block">First Name</label>
-                                    <input type="text" class="h-11 w-60 rounded-md" placeholder="{{Auth::user()->name}}" name="fname"/>
+                                    <input type="text" class="h-9 border-inherit w-60 rounded-md" style="border-color:inherit" placeholder="{{Auth::user()->name}}" name="fname" value="{{Auth::user()->name}}"/>
                                 </div>
                                 <div class="email">
                                     <label class="block">Email</label>
-                                    <input type="email" disabled class="h-11 w-60 rounded-md" placeholder="{{Auth::user()->email}}"/>
+                                    <input type="email" disabled class="h-9 border-inherit w-60 rounded-md" style="border-color:inherit" placeholder="{{Auth::user()->email}}" value="{{Auth::user()->email}}"/>
                                 </div>
                             </div>
                             <div class="user-column2 flex flex-col gap-4">
                                 <div class="last-name">
                                     <label class="block">Last Name</label>
-                                    <input type="text" class="h-11 w-60 rounded-md" placeholder="C"/>
+                                    <input type="text" class="h-9 border-inherit w-60 rounded-md" placeholder="C"/>
                                 </div>
                                 <div class="phone-no">
                                     <label class="block">Phone</label>
-                                    <input type="number" class="h-11 w-60 rounded-md" placeholder="+918765468279" name="phone"/>
+                                    <input type="number" class="h-9 border-inherit w-60 rounded-md" placeholder="+918765468279" name="phone" value="{{Auth::user()->phone}}"/>
                                 </div>
                             </div>
                         </div>
                         <div class="profile-footer text-center m-5">
-                            <textarea class="profile-bio h-32 w-9/12 pl-4 pt-3" placeholder="Add Bio" name="bio"></textarea>
+                            <textarea class="profile-bio h-32 pl-4 pt-3" placeholder="Add Bio" name="bio" style="border-color:inherit;width:80%;">{{Auth::user()->bio}}</textarea>
                         </div>
                         <div class="update-btn w-10/12 flex justify-end gap-5">
                             <button data-modal-toggle="default-modal" type="button" class="updateBtn bg-emerald-800 hover:bg-emerald-600 pt-2 pb-2 pl-6 pr-6 font-medium rounded-lg text-center">Cancel</button>
@@ -110,26 +121,27 @@
            class="hidden overflow-x-hidden overflow-y-auto fixed h-modal md:h-full top-4 left-0 right-0 md:inset-0 z-50 justify-center items-center">
            <div class="relative w-1/3 h-2/3">
                <div class="bg-white bg-gray-400 rounded-lg shadow relative dark:bg-gray-700 pt-5 pb-5">
+                <p class="error-message text-center text-red-500"></p>
                    <div class="user-columns flex justify-evenly">
                        <div class="user-column1 flex flex-col gap-4">
                            <h2 class="text-center text-bold text-2xl">Manage Passwords</h2>
                            <div class="name">
                                <label class="block">Old Password</label>
-                               <input type="text" class="h-11 w-72 rounded-md" placeholder="name"/>
+                               <input type="text" class="h-11 w-72 rounded-md old_password" placeholder="Old Password" required/>
                            </div>
                            <div class="email">
                                <label class="block">New Password</label>
-                               <input type="email" class="h-11 w-72 rounded-md" placeholder="email"/>
+                               <input type="email" class="h-11 w-72 rounded-md new_password" placeholder="New Password" required/>
                            </div>
                            <div class="last-name">
                                <label class="block">Confirm Password</label>
-                               <input type="text" class="h-11 w-72 rounded-md" placeholder="last name"/>
+                               <input type="text" class="h-11 w-72 rounded-md confirm_password" placeholder="Old Password" required/>
                            </div>
                        </div>
                    </div>
                    <div class="update-btn w-10/12 flex justify-evenly mt-5 ml-9">
                        <button data-modal-toggle="password-model" type="button" class="updateBtn bg-emerald-800 hover:bg-emerald-600 pt-2 pb-2 pl-6 pr-6 font-medium rounded-lg text-center">Cancel</button>
-                       <button data-modal-toggle="password-model" type="submit" class="updateBtn bg-emerald-800 hover:bg-emerald-600 pt-2 pb-2 pl-6 pr-6 font-medium rounded-lg text-center">Update</button>
+                       <button data-modal-toggle="" type="submit" class="updateBtn bg-emerald-800 hover:bg-emerald-600 pt-2 pb-2 pl-6 pr-6 font-medium rounded-lg text-center passwordUpdate">Update</button>
                    </div>
                </div>
            </div>

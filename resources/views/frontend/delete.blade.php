@@ -14,10 +14,10 @@
       </div>
     </div>
 </main>
-<div class="flex flex-row gap-5 ml-72">
+<div class="flex flex-row gap-5 ml-60">
     <div class="carts flex flex-row gap-5 ml-0">
                 @foreach ( $contents as $content )
-                <div class=" w-80 mt-2 bg-white border border-gray-200 hover:z-1 rounded-lg shadow duration-500 hover:scale-105  hover:shadow-xl product">
+                <div class=" w-80 mt-2 bg-white border border-gray-200 hover:z-1 rounded-lg product">
                     <a href="#">
                     <h5 class="text-center mt-2 mb-2 text-2xl font-bold tracking-tight text-gray-900">
                       {{$content->title}}</h5>
@@ -42,9 +42,9 @@
                 </div>
                 @endforeach
                 @else
-                <div class="w-full ml-60 m-auto">
-                    <img src="{{asset('images/welcome/delete.svg')}}" alt="" srcset="">
-                    <p class="mt-7">No Deleted Items here..</p>
+                <div class="w-full h-full flex flex-col justify-center gap-5 items-center">
+                    <img src="{{asset('images/welcome/delete.svg')}}" class="ml-56" alt="" srcset="">
+                    <h3 class="ml-56">No Deleted Items</h3>
                 </div>
                 @endif
            </div>
